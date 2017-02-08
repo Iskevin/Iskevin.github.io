@@ -1,0 +1,43 @@
+<html>
+	<head>
+		<title></title>
+		<style>
+			body{width:100%;height: 100%;}
+			.wrap{
+				position: relative;top:50%;left:50%;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="w-load"><div class="spin"></div></div>
+		</div>
+		
+
+
+	</body>
+	<script src="jquery-2.1.1.min.js"></script>
+	<script src="spin.js"></script>
+	<script>
+		smallLoadingIcon('.w-load');
+		function smallLoadingIcon(ele) { //小的loading图标
+			var spinner = new Spinner({
+				lines: 12,
+				length: 10,
+				width: 4,
+				radius: 15,
+				color: '#000',
+				speed: 1,
+				trail: 50,
+				shadow: false,
+				hwaccel: false, 
+				className: 'spinner',
+				top: 0,
+				left: 0
+				});
+				var target = $(ele+' .spin')[0];
+				spinner.spin(target);
+				return spinner;
+			}
+	</script>
+</html>
