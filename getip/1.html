@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<title>JavaScript获取客户端IP[利用新浪接口]</title>
+	</head>
+	<body>
+	</body>
+	<script src="jquery-2.1.1.min.js" charset="utf-8"></script>
+	<script>
+		$(function(){
+		    var api = "://pv.sohu.com/cityjson";//前面加上http
+		    //这里api是搜狐IP地址查询接口
+		    $.get(api,function(data){
+		        var script = $('<script type="text/javascript"/>')[0];
+		        script.defer = true;
+		        script.text = data;
+		        $(script).appendTo("head");
+		        console.log("cid : " + returnCitySN.cid);
+		        console.log("cip : " + returnCitySN.cip);//得到IP
+		        console.log("cname : " + returnCitySN.cname);//得到城市
+		    },"text");
+		});
+
+	</script>
+</html>

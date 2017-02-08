@@ -1,0 +1,101 @@
+<html>
+	<head>
+		<title></title>
+		<style type="text/css">
+			ul,li{margin:0;padding:0;list-style-type: none;}
+			.loop_container{width:300px;overflow:hidden;position:relative;}
+			.loop_wrapper{float:left;overflow: hidden;width:10000px;position:relative;left:0;}
+			.loop_slide{float: left;}
+			.loop_pagination{position:absolute;bottom: 0.3em;right:0.3em;overflow:hidden;}
+			.loop_pagination_li{float:left;width:0.5em;height:0.5em;background:#fff;margin:0 0.1em;
+				border-radius: 50%;
+			}
+			.active_ind{background-color: blue;}
+		</style>
+	</head>
+	<body>
+		<!-- 轮播滚动图 -->
+		<div class="loop_container">
+			<div class="loop_wrapper">
+				<img class="loop_slide" src="images/home_banner99.png" alt="" />
+				<img class="loop_slide" src="images/home_bannercz.png" alt="" />
+			</div>
+			<ul class="loop_pagination"></ul>
+		</div>
+	</body>
+	<script src="js/jquery-2.1.1.min.js"></script>
+	<script>
+
+		$(function(){
+			function Loop_imgs(opt){
+				this.obj = opt.obj;
+				this.speed = opt.speed;
+				this.view_w = this.obj.parent().width();
+				this.len = this.obj.children("img").length;
+
+			};
+			Loop_imgs.prototype = {
+				_init : function (){
+					
+					this.obj.css({
+						width: this.view_w * 2 + "px"
+					});
+					this.obj.children('img').css({
+						width: this.view_w + "px"
+					});
+					for (var i = 0; i < this.len; i++) {
+						$("<li class='loop_pagination_li'></li>").appendTo($(".loop_pagination"))
+					}
+					$(".loop_pagination_li:eq(0)").addClass('active_ind');
+					
+				},
+				_getInd : function(ind){
+					$(".loop_pagination_li").removeClass('active_ind');
+					$(".loop_pagination_li").eq(ind).addClass('active_ind');
+				},
+				_click : function (){
+					$(".loop_pagination_li").click(function(){
+						
+					});
+				},
+				start : function (){
+					lo_imgs._init();
+					lo_imgs._run();
+				},
+				_run : function (){
+					_self = this.obj;
+					_views_w = this.view_w;
+					var _left = 0;
+					var ind = 0;
+					_len = this.len;
+					console.log(_len);
+					this.timer = setInterval(function(){
+						ind++;
+						if (ind >= _len ) {
+							ind = 0;
+						};
+						lo_imgs._getInd(ind);
+						
+						_self.css({
+							left : 0
+						});
+						_self.stop().animate({
+							left : -1*_views_w + "px"
+						},600);
+
+						_self.children('img:first').appendTo(_self);
+						// console.log(1);
+
+					},this.speed);
+				}
+			};
+			var opt_loop_imgs = {
+				obj : $(".loop_wrapper"),
+				by : "click",
+				speed : 1000
+			};
+			var lo_imgs = new Loop_imgs(opt_loop_imgs);
+			lo_imgs.start();
+		});
+	</script>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <title>jQuery轻量级响应式幻灯片插件EasyFader演示-响应式_sucaihuo</title>
+        <link rel="stylesheet" href="css/jquery.easyfader.css">
+        <style type="text/css">
+            html,body{margin:0;padding:0;}
+            h1{text-align: center;}
+            .fader_controls{position:absolute;top:0;}
+
+            .fader_controls{height:100%;width:100%;}
+            .pager_list{margin:0;}
+
+
+        </style>
+    </head>
+
+    <body>
+    <h1>响应式</h1>
+    <div id="sucaihuo" class="fader">
+        <img class="slide" src="images/honme_banner3.jpg">
+        <img class="slide" src="images/home_banner2.jpg">
+        <img class="slide" src="images/99_banner.jpg">
+        <div class="fader_controls">
+            <div class="page prev" data-target="prev">&lsaquo;</div>
+            <div class="page next" data-target="next">&rsaquo;</div>
+            <ul class="pager_list"></ul>
+        </div>
+    </div>
+    <div>fadfsdf</div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.easyfader.min.js"></script>
+    <script>
+        $(function() {
+
+        	$('#sucaihuo').easyFader();
+            $(".pager_list>li:eq(0)").addClass('active');
+        });
+    </script>

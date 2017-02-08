@@ -1,0 +1,96 @@
+<html>
+	<head>
+		<title></title>
+		<style type="text/css">
+			ul,li{margin: 0;padding:0;list-style: none;}
+			a{text-decoration: none;}
+			.acc-warp{width:960px;border:10px solid red;height:300px;overflow: hidden;}
+			.acc-warp>li{float: left;height: 100%;overflow: hidden;position:relative;}
+			/*.acc-warp>li:nth-of-type(1){width:490px;}
+			.acc-warp>li:not(first-child){width:60px;}*/
+			.acc-warp>li>img{float: left;height: 100%;}
+			
+			/*.acc-warp>li:nth-of-type(1)>div{display: none;}*/
+			.acc-warp>li>div{position: absolute;top: 0;left:0;width:100%;height:100%;
+				}
+
+			.base-shdow{background-color: #000;opacity: 0.5;width:100%;height:100%;
+				position: absolute;top: 0;left:0;}
+			.acc-warp>li>div>a{color: #fff;z-index: 1000;position:absolute;top:50%;left:50%;
+				transform:translate(-50%,-50%);font-size: 24px;text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<ul class="acc-warp">
+			<li>
+				<img src="images/1.png" width="490"  height="319" />
+				<!-- <div>
+					<div class="base-shdow"></div>
+					<a href="javascript:;">苹果</a>
+				</div> -->
+			</li>
+			<li>
+				<img src="images/2.png" width="490"  height="319" />
+				<!-- <div>
+					<div class="base-shdow"></div>
+					<a href="javascript:;">西红柿</a>
+				</div> -->
+			</li>
+			<li>
+				<img src="images/3.png" width="490"  height="319" />
+				<!-- <div>
+					<div class="base-shdow"></div>
+					<a href="javascript:;">辣椒</a>
+				</div> -->
+			</li>
+			<li>
+				<img src="images/4.png" width="490"  height="319" />
+				<!-- <div>
+					<div class="base-shdow"></div>
+					<a href="javascript:;">茄汁</a>
+				</div> -->
+			</li>
+			<li>
+				<img src="images/5.png" width="490"  height="319" />
+				<!-- <div>
+					<div class="base-shdow"></div>
+					<a href="javascript:;">黄瓜</a>
+				</div> -->
+			</li>
+			<li>
+				<img src="images/4.png" width="490"  height="319" />
+				<!-- <div>
+					<div class="base-shdow"></div>
+					<a href="javascript:;">茄汁</a>
+				</div> -->
+			</li>
+			<li>
+				<img src="images/5.png" width="490"  height="319" />
+				<!-- <div>
+					<div class="base-shdow"></div>
+					<a href="javascript:;">黄瓜</a>
+				</div> -->
+			</li>
+		</ul>
+	</body>
+	<script src="js/jquery-2.1.1.min.js"></script>
+	<script>
+		function Opt(opt){
+			this.opt = opt || {};
+			this.len = opt.obj.children('li');
+
+		};
+		 Opt.prototype = {
+		 	init : function(){
+		 		
+		 	},
+		};
+		var opt = {
+			obj : $(".acc-warp")
+
+		};
+		var op = new Opt(opt);
+
+	</script>
+</html>

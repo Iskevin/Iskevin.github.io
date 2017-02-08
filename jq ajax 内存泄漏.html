@@ -1,0 +1,10 @@
+$.ajax({ 
+url: "http://www.jb51.net", 
+cache:false,//清空缓存
+data: { name: "xxxx" }, 
+dataType: "xml", 
+success: function (data, textStatus) { 
+//do something... 
+}, 
+complete: function (XHR, TS) { XHR = null } //解决内存泄漏 ，不能清空缓存
+}); 

@@ -1,0 +1,160 @@
+<html>
+	<head>
+		<title>轮子</title>
+		<link rel="stylesheet" type="text/css" href="css/head.css">
+		<style>
+			*{margin: 0;padding: 0;list-style-type: none;text-decoration: none;}
+			a{color: #000;}
+			header{height: 80px;width:100%;background-color: pink;}
+			.nav{width: 50%;height:100%;float:right;position:relative;}
+			.navSub{background-color: lightgray;}
+			.clear{content: "";display: block;clear:both;}
+			.nav>li:not(:last-child){float: left;height:100%;width:20%;cursor: pointer;}
+			.nav>li>a{display:block;float:left;height:100%;line-height: 80px;
+				position: relative;left:50%;
+				transform:translateX(-50%);
+			}
+			.nav>li>a>span{opacity:0;position:absolute;bottom:0px;background-color: rgb(243, 137, 0);display:block;width:100%;height:4px;}
+
+			.nav>li>a:hover{color:rgb(243, 137, 0);},
+			.nav>.active>a{color:red;}
+
+			.navSub{display:none; position: relative;top: -4px;padding-top: 4px;z-index: 100000000;background-clip: content-box;}
+			.navSub>li{/*overflow:hidden;*/padding:0 7px;box-border:border-box;}
+			.navSub>li>a{width:100%;display:block;text-align: center;padding:8px 0;}
+			.navSub>li:not(:last-child)>a{border-bottom: 1px dashed gray;}
+			.navSub>li:hover a{color:red;}
+
+			#_wheel{/*width:100px;*/height:4px;background-color: rgb(243, 137, 0);
+				position:absolute;bottom:0;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<header>
+			<ul class="nav clear">
+				<li class="active">
+					<a href="javascript:;">首页<span></span></a>
+				</li>
+				<li>
+					<a href="javascript:;">产品服务<span></span></a>
+					<ul class="navSub clear">
+						<li>
+							<a href="javascript:;">牧草种植</a>
+						</li>
+						<li>
+							<a href="javascript:;">畜牧养殖</a>
+						</li>
+						<li>
+							<a href="javascript:;">有机食材</a>
+						</li>
+						<li>
+							<a href="javascript:;">社区服务</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="javascript:;">首农专栏<span></span></a>
+				</li>
+				<li>
+					<a href="javascript:;">团队成员<span></span></a>
+				</li>
+				<li>
+					<a href="javascript:;">联系我们<span></span></a>
+					<ul class="navSub clear">
+						<li>
+							<a href="javascript:;">加入我们</a>
+						</li>
+						<li>
+							<a href="javascript:;">联系我们</a>
+						</li>
+					</ul>
+				</li>
+				<li id="_wheel"></li>
+			</ul>
+		</header>
+	</body>
+	<script src="js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			function Wheel(opt){
+				this.obj = opt.obj;
+				this.gz = opt.objWheel;
+
+				this.inPos = 0;
+			}
+			Wheel.prototype = {				
+				init:function(){
+					this.obj.eq(0).find("a>span").css("opacity","1");
+
+					gz.hovSty(this.obj.eq(0));
+					gz.hov();
+					gz.click();
+				},
+				click:function(){
+					var len = this.obj.length;
+					var ele = this.obj;
+					var inPos = this.inPos;
+					ele.click(function(){
+						ele.removeClass('active');
+						$(this).addClass("active");
+
+						
+						ele.find("a>span").css("opacity","0");
+						$(this).find("a>span").css("opacity","1");
+
+						inPos = $(this).index();
+						 gz._this(inPos);
+						
+					});
+					
+				},
+				_this:function(_index){
+					this.inPos = _index;
+					console.log(this.inPos);
+				},
+				hov:function(){
+					var elegz = this.gz;
+					var eleobj = this.obj;
+					
+					var ele = this.obj.eq(this.inPos);
+					this.obj.hover(function(){
+						gz.hovSty($(this));
+						if ($(this).children('.navSub')) {
+							$(this).children('.navSub').slideToggle();
+						}
+						
+					},function(){
+						eleobj.children('.navSub').slideUp();
+					});
+
+					$(".nav").mouseleave(function() {
+						console.log(this.inPos);
+						elegz.stop().animate({
+							width:ele.children('a').width() + "px",
+							left:(ele.width() - ele.children("a").width())/2 + ele.width()*this.inPos + 'px'
+						},500);
+					}.bind(this));
+				},
+				hovSty:function(ele){
+					this.gz.stop().animate({
+						width:ele.children('a').width() + "px",
+						left:(ele.width() - ele.children("a").width())/2 + ele.width()*ele.index() + 'px'
+					});
+
+					
+				}
+
+			}
+			
+			var opt = {
+				obj:$(".nav>li:not(:last-child)"),
+				objWheel:$("#_wheel")
+			};
+			var gz = new Wheel(opt);
+			gz.init();
+			
+		});
+	</script>
+</html>
